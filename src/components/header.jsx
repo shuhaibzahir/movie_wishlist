@@ -8,7 +8,7 @@ export default function ActionAreaCard() {
     <Card>
         <CardContent>
           <Typography gutterBottom variant="h3" component="div">
-           <Typography variant='span'>Welcome to</Typography> <Typography color={"primary"} variant='span'>WatchList</Typography>
+           <Typography variant='span'>Welcome to</Typography> <Typography color={"primary"} variant='span'>Wish list</Typography>
           </Typography>
           <Typography variant="div" sx={{display:"flex", alignItems:"center"}} color="text.secondary">
            Browse movie, add them to Watchlist and share them with friends

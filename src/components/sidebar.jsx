@@ -23,10 +23,20 @@ import DarkLightSwitch from "./darkLightSwitch";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { resetMovie, resetWishlist } from "../actions";
+import { useLocation } from 'react-router-dom';
 
 const LeftSideComponent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let location = useLocation();
+  let path = ""
+  if (location.pathname=="/"){
+    path="/home"
+  }
+  if(location.pathname == "/wishlist"){
+    path="/wishlist"
+  }
+  const color = {color:"primary"}
   //   const isAuthenticate = useSelector((state) => state.user.logined);
   const userEmail = useSelector((state) => state.user.userEmail);
   const theme = useSelector((state) => state.theme?.theme || "light");
@@ -71,14 +81,14 @@ const LeftSideComponent = () => {
         </Typography>
         <Divider />
         <List>
-          <ListItemButton selected={true} onClick={() => handleClick("/")}>
+          <ListItemButton selected={path === "/home"} onClick={() => handleClick("/")}>
             <ListItemIcon>
-              <Home color="primary" />
+              <Home {   ...( path === "/home"? color : {})}/>
             </ListItemIcon>
             <ListItemText
               primary="Home"
               primaryTypographyProps={{
-                color: "primary",
+                ...( path === "/home"? color : {}),
                 fontWeight: "medium",
               }}
             />
@@ -86,9 +96,9 @@ const LeftSideComponent = () => {
         </List>
         <Divider />
         <List>
-          <ListItem disablePadding onClick={() => handleClick("/wishlist")}>
+          <ListItem selected={path === "/wishlist"} disablePadding onClick={() => handleClick("/wishlist")}>
             <ListItemButton>
-              <ListItemText primary={wishListName} />
+              <ListItemText primaryTypographyProps={{ ...( path === "/wishlist"? color : {}),}} primary={wishListName} />
             </ListItemButton>
           </ListItem>
         </List>
